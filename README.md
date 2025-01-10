@@ -19,7 +19,7 @@ Este proyecto es una aplicación web que incluye tanto el frontend como el backe
 
 1. Navega al directorio del frontend:
     ```bash
-    cd frontend
+    cd lottuse-frontend
     ```
 2. Instala las dependencias:
     ```bash
@@ -30,7 +30,7 @@ Este proyecto es una aplicación web que incluye tanto el frontend como el backe
 
 1. Navega al directorio del backend:
     ```bash
-    cd backend
+    cd lottusse-backend
     ```
 2. Instala las dependencias:
     ```bash

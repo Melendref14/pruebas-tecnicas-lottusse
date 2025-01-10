@@ -19,7 +19,7 @@ Este proyecto es una aplicación web que incluye tanto el frontend como el backe
 
 1. Navega al directorio del frontend:
     ```bash
-    cd lottuse-frontend
+    cd lottusse-frontend
     ```
 2. Instala las dependencias:
     ```bash

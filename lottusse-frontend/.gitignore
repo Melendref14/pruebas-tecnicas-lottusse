@@ -1,45 +1,41 @@
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Logs
-logs/
-*.log
-*.log.*
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Dependency directories
-jspm_packages/
-bower_components/
+# testing
+/coverage
 
-# Build directories
-dist/
-build/
-out/
+# next.js
+/.next/
+/out/
 
-# Coverage directory used by tools like istanbul
-coverage/
+# production
+/build
 
-# IDEs and editors
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-
-# OS generated files
+# misc
 .DS_Store
-Thumbs.db
+*.pem
 
-# Environment variables
-.env
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Miscellaneous
-*.swp
-*.bak
-*.tmp
-*.orig
-*.rej
-*.sublime-project
-*.sublime-workspace
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

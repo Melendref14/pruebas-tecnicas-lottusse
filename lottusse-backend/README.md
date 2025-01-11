@@ -42,6 +42,24 @@ Sigue estos pasos para instalar y configurar el proyecto:
     ```bash
     mysql -u tu-usuario -p < path/to/setup.sql
     ```
+5. Crear el .env con esta configuracion:
+```bash
+# CORS Configuration
+ALLOWED_ORIGIN=http://localhost:3000
+
+# MySQL configuration
+DB_URL=jdbc:mysql://localhost:3308/nombre-db
+DB_USERNAME=username
+DB_PASSWORD=password
+
+# Redis configuration
+REDIS_HOST=localhost
+REDIS_PORT=6379
+
+# Spring Boot Configuration
+SPRING_PROFILES_ACTIVE=local
+SERVER_PORT=8080
+```
 
 ## Estructura de la Base de Datos
 

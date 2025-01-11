@@ -43,7 +43,7 @@ Este proyecto es una aplicación web que incluye tanto el frontend como el backe
 
 1. Inicia el servidor de desarrollo:
     ```bash
-    npm start
+    npm run dev
     ```
 2. Abre tu navegador y navega a `http://localhost:3000`.
 

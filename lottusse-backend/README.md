@@ -81,7 +81,7 @@ La aplicación proporciona la siguiente funcionalidad:
 
 ### Listado de Productos
 
-- **URL:** `/products`
+- **URL:** `http://localhost:3000/`
 - **Descripción:** Muestra un listado de los productos obtenidos desde la API del backend.
 
 ## Estructura del Proyecto

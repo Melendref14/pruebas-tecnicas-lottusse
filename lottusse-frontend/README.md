@@ -58,6 +58,7 @@ lottusse-frontend/
 ├── app/
 │   ├── assets/
 │   ├── components/
+│   ├── hooks/
 │   ├── globals.css/
 │   ├── layout.js
 │   ├── page.js

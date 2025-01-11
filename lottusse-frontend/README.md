@@ -2,7 +2,7 @@
 
 Este proyecto es la parte frontend de la aplicación Lottusse. Aquí encontrarás toda la información necesaria para entender, instalar y ejecutar el proyecto.
 
-![view](./app/assets/productList.png)
+![view](./app/assets/view.png)
 
 ## Requisitos
 

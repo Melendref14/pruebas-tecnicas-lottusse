@@ -20,7 +20,7 @@ const Products = () => {
             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-4">
                 <Image src={logo} alt="Logo" className="w-32 h-auto" />
             </div>
-            <div className="container mx-auto grid grid-cols-3 gap-8 mt-16">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
                 {/* Card izquierdo con Titulo y Subtitulos */}
                 <div className="col-span-1 bg-white p-6 rounded-lg shadow-lg h-max">
                     <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Lista de Productos</h1>
@@ -32,17 +32,19 @@ const Products = () => {
                     <SearchBar searchName={searchName} setSearchName={setSearchName} />
                 </div>
                 {/* Card derecho para mostrar los productos */}
-                {loading ? (
-                    <div className="col-span-2 flex justify-center items-center">
-                        <p>Cargando productos...</p>
-                    </div>
-                ) : error ? (
-                    <div className="col-span-2 flex justify-center items-center">
-                        <p className="text-red-500">{error}</p>
-                    </div>
-                ) : (
-                    <ProductList products={filteredProducts} />
-                )}
+                <div className="col-span-1 md:col-span-2">
+                    {loading ? (
+                        <div className="flex justify-center items-center">
+                            <p>Cargando productos...</p>
+                        </div>
+                    ) : error ? (
+                        <div className="flex justify-center items-center">
+                            <p className="text-red-500">{error}</p>
+                        </div>
+                    ) : (
+                        <ProductList products={filteredProducts} />
+                    )}
+                </div>
             </div>
         </div>
     );

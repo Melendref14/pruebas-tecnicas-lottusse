@@ -27,12 +27,16 @@ Sigue estos pasos para instalar el proyecto:
     ```bash
     npm install
     ```
+4. Crear .env para realizar peticiones al backend:
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+```
 
 ## Ejecución
 
 Para ejecutar el proyecto en un entorno de desarrollo, utiliza el siguiente comando:
 ```bash
-npm start
+npm run dev
 ```
 Esto iniciará la aplicación en `http://localhost:3000`.
 
@@ -40,7 +44,7 @@ Esto iniciará la aplicación en `http://localhost:3000`.
 
 En el proyecto, puedes ejecutar los siguientes scripts:
 
-- `npm start`: Inicia la aplicación en modo desarrollo.
+- `npm run dev`: Inicia la aplicación en modo desarrollo.
 - `npm run build`: Construye la aplicación para producción en la carpeta `build`.
 - `npm test`: Ejecuta las pruebas.
 
@@ -51,12 +55,12 @@ La estructura del proyecto es la siguiente:
 ```
 lottusse-frontend/
 ├── public/
-├── src/
+├── app/
+│   ├── assets/
 │   ├── components/
-│   ├── pages/
-│   ├── services/
-│   ├── App.js
-│   ├── index.js
+│   ├── globals.css/
+│   ├── layout.js
+│   ├── page.js
 ├── package.json
 └── README.md
 ```

@@ -11,11 +11,9 @@ const ProductList = ({ products }) => (
                     </div>
                 </div>
                 <div className="flex-1">
-                    <p className="text-sm text-gray-500">{product.brand}</p>
                     <h2 className="text-lg font-semibold text-gray-900">
                         {product.name}
                     </h2>
-                    <p className="text-sm text-gray-500">{product.description}</p>
                 </div>
             </div>
         ))}

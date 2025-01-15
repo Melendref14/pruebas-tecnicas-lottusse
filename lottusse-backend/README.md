@@ -47,7 +47,7 @@ Sigue estos pasos para instalar y configurar el proyecto:
 # CORS Configuration
 ALLOWED_ORIGIN=http://localhost:3000
 
-# MySQL configuration
+# MySQL configuration | Asegurarse de colocar el nombre de la base de datos que se creó en MySQL y el PORT que se configuró
 DB_URL=jdbc:mysql://localhost:3308/nombre-db
 DB_USERNAME=username
 DB_PASSWORD=password

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useAddProduct from '../hooks/addProduct';
+import useAddProduct from '../hooks/useAddProduct';
 
 const AddButton = ({ reloadProducts }) => {
     const { addProduct, loading, error, product } = useAddProduct();
@@ -34,7 +34,7 @@ const AddButton = ({ reloadProducts }) => {
             />
             {/* Boton para agregar el producto */}
             <button
-                className="w-full p-2 mt-4 bg-blue-500 text-white font-semibold rounded-lg"
+                className="w-full p-2 mt-4 bg-black text-white font-semibold rounded-lg"
                 onClick={handleAddProduct}
                 disabled={loading}
             >

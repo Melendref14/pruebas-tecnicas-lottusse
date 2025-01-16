@@ -4,12 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import SearchBar from "./components/SearchBar";
 import ProductList from "./components/ProductList";
-import useProducts from "./hooks/useProducts";
+import useGetProducts from "./hooks/useGetProducts";
 import logo from "./assets/logo.svg";
 import AddButton from "./components/AddButton";
 
 const Products = () => {
-    const { products, error, loading } = useProducts();
+    const { products, error, loading } = useGetProducts();
     const [searchName, setSearchName] = useState("");
 
     const filteredProducts = products.filter(product =>

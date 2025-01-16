@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import ProductList from "./components/ProductList";
 import useProducts from "./hooks/useProducts";
 import logo from "./assets/logo.svg";
+import AddButton from "./components/AddButton";
 
 const Products = () => {
     const { products, error, loading } = useProducts();
@@ -30,6 +31,7 @@ const Products = () => {
                         <li>Diseño Responsivo para todos los dispositivos 📱</li>
                     </ul>
                     <SearchBar searchName={searchName} setSearchName={setSearchName} />
+                    <AddButton />
                 </div>
                 {/* Card derecho para mostrar los productos */}
                 <div className="col-span-1 md:col-span-2">

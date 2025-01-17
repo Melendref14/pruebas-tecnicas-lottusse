@@ -1,22 +1,12 @@
 import { useState } from 'react';
 import useAddProduct from '../hooks/useAddProduct';
 
-const AddButton = ({ reloadProducts }) => {
-    const { addProduct, loading, error, product } = useAddProduct();
+const AddButton = () => {
+    const { addProduct, loading, error, successMessage } = useAddProduct();
     const [productName, setProductName] = useState('');
-    const [inputError, setInputError] = useState('');
-    const [inputSuccessful, setInputSuccessful] = useState('');
 
     const handleAddProduct = () => {
-        if (!productName.trim()) {
-            setInputError("Nombre del producto no puede estar vacio...");
-            return;
-        } else {
-            setInputSuccessful("Producto añadido exitosamente...");
-        }
-        setInputError("");
         addProduct({ name: productName }, () => {
-            reloadProducts();
             setProductName("");
         });
     };
@@ -41,8 +31,7 @@ const AddButton = ({ reloadProducts }) => {
                 {loading ? 'Añadiendo...' : 'Añadir Producto'}
             </button>
             {error && <p className="text-red-500 mt-2">{error}</p>}
-            {product && <p className="text-green-500 mt-2">{inputSuccessful}</p>}
-            {inputError && <p className="text-red-500 mt-2">{inputError}</p>}
+            {successMessage && <p className="text-green-500 mt-2">{successMessage}</p>}
         </div>
     );
 };

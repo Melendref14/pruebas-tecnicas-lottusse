@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class ProductService {
 
-    private static final String REDIS_KEY_PREFIX = "product:";
+    private static final String REDIS_KEY_PREFIX = "Producto:";
     private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     @Autowired
@@ -29,17 +29,26 @@ public class ProductService {
 
     /**
      * Agrega un nuevo producto
-     * 
+     *
      * @param product El producto a agregar.
      * @return El producto guardado.
+     * @throws IllegalArgumentException Si el nombre del producto esta vacio o ya existe.
      */
     public Product addProduct(Product product) {
+        if (product.getName() == null || product.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del producto no puede estar vacío...");
+        }
+
+        if (productRepository.findByName(product.getName()).isPresent()) {
+            throw new IllegalArgumentException("El nombre del producto ya existe...");
+        }
+
         return productRepository.save(product);
     }
 
     /**
      * Obtiene todos los productos
-     * 
+     *
      * @return Una lista de todos los productos.
      */
     public List<Product> getAllProducts() {
@@ -48,38 +57,38 @@ public class ProductService {
 
     /**
      * Obtiene un producto por su ID
-     * 
+     *
      * @param id El ID del producto a obtener.
      * @return El producto encontrado o un estado 404 si no se encuentra.
      */
     public Optional<Product> getProductById(Integer id) {
         try {
-            logger.info("Fetching product with ID: {}", id);
+            logger.info("Obteniendo producto con ID: {}", id);
 
             // Consulta en Redis
             String redisKey = REDIS_KEY_PREFIX + id;
-            logger.info("Checking Redis for key: {}", redisKey);
+            logger.info("Comprobando Redis en busca de la clave: {}", redisKey);
             Product cachedProduct = (Product) redisTemplate.opsForValue().get(redisKey);
 
             if (cachedProduct != null) {
-                logger.info("Product found in Redis with ID: {}", id);
+                logger.info("Producto encontrado en Redis con ID: {}", id);
                 return Optional.of(cachedProduct);
             }
 
             // Si no está en Redis, busca en la base de datos
-            logger.info("Product not found in Redis, checking database for ID: {}", id);
+            logger.info("Producto no encontrado en Redis, verificando la base de datos para ID: {}", id);
             Optional<Product> product = productRepository.findById(id);
             if (product.isPresent()) {
-                logger.info("Product found in database with ID: {}", id);
+                logger.info("Producto encontrado en base de datos con ID: {}", id);
                 // Inserta el producto en Redis
                 redisTemplate.opsForValue().set(redisKey, product.get(), 10, TimeUnit.MINUTES);
             } else {
-                logger.warn("Product not found in database with ID: {}", id);
+                logger.warn("Producto no encontrado en base de datos con ID: {}", id);
             }
 
             return product;
         } catch (Exception e) {
-            logger.error("Error fetching product with ID: {}", id, e);
+            logger.error("Error al obtener el producto con ID: {}", id, e);
             throw new RuntimeException("Error al obtener el producto por ID: " + id, e);
         }
     }

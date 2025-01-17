@@ -21,19 +21,25 @@ public class ProductController {
 
     /**
      * Endpoint para agregar un nuevo producto.
-     * 
+     *
      * @param product El producto a agregar.
      * @return El producto guardado.
      */
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        Product savedProduct = productService.addProduct(product);
-        return ResponseEntity.ok(savedProduct);
+    public ResponseEntity<?> addProduct(@RequestBody Product product) {
+        try {
+            Product savedProduct = productService.addProduct(product);
+            return ResponseEntity.ok(new ApiResponse(true, "Producto añadido exitosamente...", savedProduct));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new ApiResponse(false, e.getMessage(), null));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new ApiResponse(false, "Error interno del servidor", null));
+        }
     }
 
     /**
      * Endpoint para obtener todos los productos.
-     * 
+     *
      * @return Una lista de todos los productos.
      */
     @GetMapping
@@ -55,9 +61,33 @@ public class ProductController {
             Optional<Product> product = productService.getProductById(productId);
             return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
         } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().body("Invalid product ID format");
+            return ResponseEntity.badRequest().body("Formato de ID de producto no válido");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
+    // Clase para la respuesta de la API
+    public static class ApiResponse {
+        private boolean success;
+        private String message;
+        private Product product;
+
+        public ApiResponse(boolean success, String message, Product product) {
+            this.success = success;
+            this.message = message;
+            this.product = product;
+        }
+
+        public boolean isSuccess() {
+            return success;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public Product getProduct() {
+            return product;
         }
     }
 }

@@ -14,6 +14,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/products")
+@CrossOrigin(origins = "http://localhost:3000") // Replace with your frontend URL
 public class ProductController {
 
     @Autowired
@@ -66,6 +67,30 @@ public class ProductController {
             return ResponseEntity.status(500).body("Internal server error");
         }
     }
+
+    /**
+     * Endpoint para eliminar un producto por su ID.
+     *
+     * @param id El ID del producto a eliminar.
+     * @return Un mensaje de éxito o un estado 404 si no se encuentra.
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable String id) {
+        try {
+            Integer productId = Integer.parseInt(id);
+            boolean isDeleted = productService.deleteProduct(productId);
+            if (isDeleted) {
+                return ResponseEntity.ok(new ApiResponse(true, "Producto eliminado exitosamente...", null));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Formato de ID de producto no válido");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
+
     // Clase para la respuesta de la API
     public static class ApiResponse {
         private boolean success;

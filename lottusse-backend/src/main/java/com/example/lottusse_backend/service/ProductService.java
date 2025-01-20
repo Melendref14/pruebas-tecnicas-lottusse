@@ -92,4 +92,20 @@ public class ProductService {
             throw new RuntimeException("Error al obtener el producto por ID: " + id, e);
         }
     }
+
+    /**
+     * Elimina un producto por su ID
+     *
+     * @param id El ID del producto a eliminar.
+     * @return `true` si el producto fue eliminado, `false` si no se encuentró.
+     */
+    public boolean deleteProduct(Integer id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            productRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

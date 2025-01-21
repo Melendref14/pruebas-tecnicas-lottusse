@@ -1,5 +1,3 @@
-import React from "react";
-
 const ErrorAlert = ({ message }) => {
     return (
         <div

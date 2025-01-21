@@ -1,15 +1,34 @@
-import { useState } from 'react';
-import useAddProduct from '../hooks/useAddProduct';
+import { useEffect, useState } from "react";
+import useAddProduct from "../hooks/useAddProduct";
 import SuccessAlert from "./SuccessAlert"
 import ErrorAlert from "./ErrorAlert"
 
-const AddButton = () => {
+const AddButton = ({ onProductAdded }) => {
     const { addProduct, loading, error, successMessage } = useAddProduct();
     const [productName, setProductName] = useState('');
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
+
+    useEffect(() => {
+        if (successMessage) {
+            setShowSuccess(true);
+            const timer = setTimeout(() => setShowSuccess(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [successMessage]);
+
+    useEffect(() => {
+        if (error) {
+            setShowError(true);
+            const timer = setTimeout(() => setShowError(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     const handleAddProduct = () => {
         addProduct({ name: productName }, () => {
             setProductName("");
+            onProductAdded();
         });
     };
 
@@ -72,8 +91,8 @@ const AddButton = () => {
                 <span className="relative text-base font-semibold">{loading ? 'Añadiendo...' : 'Añadir Producto'}</span>
                 </button>
             </div>
-            <ErrorAlert message={error} />
-            <SuccessAlert message={successMessage} />
+            {showError && <ErrorAlert message={error} />}
+            {showSuccess && <SuccessAlert message={successMessage} />}
         </div>
         
     );

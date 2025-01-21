@@ -9,7 +9,7 @@ import logo from "./assets/logo.svg";
 import AddButton from "./components/AddButton";
 
 const Products = () => {
-    const { products, error, loading } = useGetProducts();
+    const { products, error, loading, fetchProducts } = useGetProducts();
     const [searchName, setSearchName] = useState("");
 
     const filteredProducts = products.filter(product =>
@@ -31,7 +31,7 @@ const Products = () => {
                         <li>Diseño Responsivo para todos los dispositivos 📱</li>
                     </ul>
                     <SearchBar searchName={searchName} setSearchName={setSearchName} />
-                    <AddButton />
+                    <AddButton onProductAdded={fetchProducts} />
                 </div>
                 {/* Card derecho para mostrar los productos */}
                 <div className="col-span-1 md:col-span-2">
@@ -44,7 +44,7 @@ const Products = () => {
                             <p className="text-red-500">{error}</p>
                         </div>
                     ) : (
-                        <ProductList products={filteredProducts} />
+                        <ProductList products={filteredProducts} onProductDeleted={fetchProducts} />
                     )}
                 </div>
             </div>

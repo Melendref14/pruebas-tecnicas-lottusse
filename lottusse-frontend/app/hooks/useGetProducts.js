@@ -6,7 +6,7 @@ const useGetProducts = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products`);
@@ -17,11 +17,12 @@ const useGetProducts = () => {
                 setLoading(false);
             }
         };
-
+        
+    useEffect(() => {
         fetchProducts();
     }, []);
 
-    return { products, error, loading };
+    return { products, error, loading, fetchProducts };
 };
 
 export default useGetProducts;

@@ -54,3 +54,7 @@ Este proyecto es una aplicación web que incluye tanto el frontend como el backe
     ./mvnw spring-boot:run
     ```
 2. El backend estará disponible en `http://localhost:8080`.
+
+## Producción
+
+Puedes ver la producción del proyecto en: [https://pruebas-tecnicas-lottusse.vercel.app/](https://pruebas-tecnicas-lottusse.vercel.app/)

@@ -12,6 +12,7 @@ class LottuseBackendApplicationTests {
     static void setup() {
         Dotenv dotenv = Dotenv.load();
         System.setProperty("ALLOWED_ORIGIN", dotenv.get("ALLOWED_ORIGIN"));
+        System.setProperty("FRONTEND_URL", dotenv.get("FRONTEND_URL"));
         System.setProperty("DB_URL", dotenv.get("DB_URL"));
         System.setProperty("DB_USERNAME", dotenv.get("DB_USERNAME"));
         System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));

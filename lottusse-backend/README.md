@@ -32,7 +32,6 @@ Sigue estos pasos para instalar y configurar el proyecto:
     Edita los archivos de propiedades en `src/main/resources` para configurar las conexiones a MySQL y Redis según tu entorno:
 
     - `application-local.properties`
-    - `application-staging.properties`
     - `application-production.properties`
 
 4. Crea la base de datos y las tablas necesarias:
@@ -45,20 +44,19 @@ Sigue estos pasos para instalar y configurar el proyecto:
 5. Crear el .env con esta configuracion:
 ```bash
 # CORS Configuration
+FRONTEND_URL=http://localhost:3000
 ALLOWED_ORIGIN=http://localhost:3000
 
-# MySQL configuration | Asegurarse de colocar el nombre de la base de datos que se creó en MySQL y el PORT que se configuró
-DB_URL=jdbc:mysql://localhost:3308/nombre-db
-DB_USERNAME=username
-DB_PASSWORD=password
+# MySQL configuration
+DB_URL=jdbc:mysql://localhost:3306/nombre-db
+
+DB_USERNAME=tu-username
+DB_PASSWORD=tu-password
+DB_DRIVER=com.mysql.cj.jdbc.Driver
 
 # Redis configuration
 REDIS_HOST=localhost
-REDIS_PORT=6379
-
-# Spring Boot Configuration
-SPRING_PROFILES_ACTIVE=local
-SERVER_PORT=8080
+REDIS_PORT=6380
 ```
 
 ## Estructura de la Base de Datos

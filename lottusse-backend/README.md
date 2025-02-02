@@ -27,97 +27,26 @@ Sigue estos pasos para instalar y configurar el proyecto:
     cd lottusse-backend
     ```
 
-3. Configura las propiedades de la aplicación:
-
-    Edita los archivos de propiedades en `src/main/resources` para configurar las conexiones a MySQL y Redis según tu entorno:
-
-    - `application-local.properties`
-    - `application-production.properties`
-
-4. Crea la base de datos y las tablas necesarias:
+3. Crea la base de datos y las tablas necesarias:
 
     Ejecuta el script `setup.sql` en tu servidor MySQL para crear la base de datos y las tablas, y para insertar productos de ejemplo:
 
     ```bash
-    mysql -u tu-usuario -p < path/to/setup.sql
+    mysql -u tu-usuario -p < resources/setup.sql
     ```
-5. Crear el .env con esta configuracion:
-```bash
-# CORS Configuration
-FRONTEND_URL=http://localhost:3000
-ALLOWED_ORIGIN=http://localhost:3000
 
-# MySQL configuration
-DB_URL=jdbc:mysql://localhost:3306/nombre-db
+4. Crea un archivo `.env` basado en el archivo `.env.example` y configura las variables de entorno necesarias.
 
-DB_USERNAME=tu-username
-DB_PASSWORD=tu-password
-DB_DRIVER=com.mysql.cj.jdbc.Driver
+5. Instala las dependencias del proyecto:
 
-# Redis configuration
-REDIS_HOST=localhost
-REDIS_PORT=6380
-```
+    ```bash
+    ./mvnw clean install
+    ```
 
-## Estructura de la Base de Datos
-
-A continuación se muestra una imagen de cómo debería verse la estructura de la base de datos:
-
-![Estructura de la Base de Datos](./images/db_structure.png)
-
-5. Compila y ejecuta la aplicación:
+6. Inicia la aplicación:
 
     ```bash
     ./mvnw spring-boot:run
     ```
 
-    La aplicación debería estar corriendo en `http://localhost:8080`.
-
-## Uso
-
-La aplicación proporciona la siguiente funcionalidad:
-
-### Listado de Productos
-
-- **URL:** `http://localhost:3000/`
-- **Descripción:** Muestra un listado de los productos obtenidos desde la API del backend.
-
-## Estructura del Proyecto
-
-La estructura del proyecto es la siguiente:
-
-```
-lottusse-backend/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── example/
-│   │   │           └── lottusse_backend/
-│   │   │               ├── config/
-│   │   │               ├── controller/
-│   │   │               ├── entity/
-│   │   │               ├── repository/
-│   │   │               ├── service/
-│   │   │               └── LottuseBackendApplication.java
-│   │   └── resources/
-│   │       ├── static/
-│   │       ├── templates/
-│   │       ├── application-production.properties
-│   │       ├── application-local.properties
-│   │       ├── application-staging.properties
-│   │       ├── application.properties
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── example/
-│                   └── lottusse_backend/
-│                       └── LottuseBackendApplicationTests.java
-├── .gitignore
-├── mvnw
-├── mvnw.cmd
-├── pom.xml
-└── README.md
-```
-
-Esta estructura sigue las convenciones estándar de un proyecto Spring Boot, con directorios separados para controladores, modelos, repositorios y servicios.
+La aplicación estará disponible en `http://localhost:8080`.

@@ -10,7 +10,7 @@ import org.springframework.lang.NonNull;
 @Configuration
 public class WebConfig {
 
-    @Value("${ALLOWED_ORIGIN}")
+    @Value("${FRONTEND_URL}")
     private String allowedOrigin;
 
     @Bean

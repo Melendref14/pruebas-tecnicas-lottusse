@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>lottusse-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>LottuseBackend</name>
 	<description>Prueba Técnica Backend desarrollada para Lottusse</description>
 	<url/>
@@ -62,11 +63,20 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+	
 		<dependency>
 			<groupId>io.github.cdimascio</groupId>
 			<artifactId>java-dotenv</artifactId>
 			<version>5.2.2</version>
 		</dependency>
+
+		<!-- Spring Cloud GCP -->
+		<dependency>
+        	<groupId>org.springframework.cloud</groupId>
+           	<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
+           	<version>1.2.8.RELEASE</version>
+       </dependency>
 		
 		<!-- Test Dependencies -->
 		<dependency>
